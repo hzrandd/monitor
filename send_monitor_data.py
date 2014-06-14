@@ -4,7 +4,6 @@
 Created on 2012-07-23
 Updated on 2014-02-21
 
-@author: hzwangpan@corp.netease.com
 '''
 
 import hashlib
@@ -68,7 +67,7 @@ def store_metadata(metadata):
         jsona = json.dumps(metadata)
         meta_file_write.write(jsona)
     except Exception:
-        # NOTE(hzyangtk): when exception happens raise it, stop sending datas.
+        # NOTE(hzrandd): when exception happens raise it, stop sending datas.
         raise
     finally:
         meta_file_write.close()
@@ -175,7 +174,7 @@ def read_temp_file():
                     return True
         return False
     except Exception:
-        # NOTE(hzyangtk): when exception happens, return False
+        # NOTE(hzrandd): when exception happens, return False
         return False
 
 
@@ -193,7 +192,7 @@ def write_temp_file():
         jsona = json.dumps(TEMP_DATA)
         temp_file_write.write(jsona)
     except Exception:
-        # NOTE(hzyangtk): when exception happens raise it, stop sending datas.
+        # NOTE(hzrandd): when exception happens raise it, stop sending datas.
         raise
     finally:
         temp_file_write.close()
@@ -415,7 +414,7 @@ class GetSystemUsage(object):
                 else:
                     partitions['logic'].append(partition)
 
-            # NOTE(hzyangtk): here to store all the partition names
+            # NOTE(hzrandd): here to store all the partition names
             total_disk_info['disk_partition_info'] = partitions
 
         def _get_disk_data_by_proc(disks, total_disk_info):
@@ -534,7 +533,7 @@ class GetSystemUsage(object):
             if key in TEMP_DATA:
                 TEMP_DATA[key] = now_disk_data[key]
 
-        # FIXME(hzyangtk): here add for don`t record partition info into temp.
+        # FIXME(hzrandd): here add for don`t record partition info into temp.
         # To do this when partition monitor enable, partition change will occur
         if not is_success:
             TEMP_DATA['disk_partition_info'] = last_partition_info
